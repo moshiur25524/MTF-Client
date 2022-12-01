@@ -1,8 +1,12 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import headerIcon from '../../../Features/Icons/icons8-makerbot-industries-an-american-desktop-3d-printer-manufacturer-25.png'
+import auth from '../../../firebase.init';
 import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
     // const button = document.querySelector('#menu-button');
     // const menu = document.querySelector('#menu');
 
@@ -10,6 +14,9 @@ const Header = () => {
     // button.addEventListener('click', () => {
     //     menu.classList.toggle('hidden');
     // });
+    const handleSingOut = () => {
+        signOut(auth);
+    }
     return (
         <div>
             <header>
@@ -49,14 +56,7 @@ const Header = () => {
                     </svg>
 
                     <div class="hidden w-full md:flex md:items-center md:w-auto" id="menu">
-                        <ul
-                            class="
-              pt-4
-              text-base text-gray-700
-              md:flex
-              md:justify-between 
-              md:pt-0"
-                        >
+                        <ul class="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0">
                             <li>
                                 <CustomLink class="md:p-4 py-2 block hover:text-purple-400" to="/dashboard"
                                 >Dashboard</CustomLink>
@@ -65,10 +65,17 @@ const Header = () => {
                                 <CustomLink class="md:p-4 py-2 block hover:text-purple-400" to="/blogs"
                                 >Blogs</CustomLink>
                             </li>
-                            <li>
-                                <CustomLink class="md:p-4 py-2 block hover:text-purple-400" to="/login"
-                                >Login</CustomLink>
-                            </li>
+                            {
+                                user ? <li>
+                                    <button onClick={handleSingOut} class="md:p-4 py-2 block hover:text-purple-400" to="/login"
+                                    >SignOut
+                                    </button>
+                                </li> : <li>
+                                    <CustomLink class="md:p-4 py-2 block hover:text-purple-400" to="/login"
+                                    >Login
+                                    </CustomLink>
+                                </li>
+                            }
                             <li>
                                 <CustomLink class="md:p-4 py-2 block hover:text-purple-400" to="/dashboard"
                                 >Features</CustomLink>
