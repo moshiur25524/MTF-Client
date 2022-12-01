@@ -7,6 +7,7 @@ import NotFound from './Pages/Shared/NotFound/NotFound';
 import Header from './Pages/Shared/Header/Header';
 import Login from './Pages/Login/Login';
 import Blogs from './Pages/Blogs/Blogs';
+import Register from './Pages/Login/Register/Register';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/blogs' element={<Blogs/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
     </div>
