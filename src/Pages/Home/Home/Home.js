@@ -4,6 +4,8 @@ import CradGlass from '../CradGlass/CradGlass';
 import DoctorSection from '../DoctorSection/DoctorSection';
 import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
+import Footer from '../../Shared/Footer/Footer'
+
 
 const Home = () => {
     return (
@@ -13,6 +15,7 @@ const Home = () => {
             <Services/>
             <DoctorSection/>
             <Testimonials/>
+            <Footer/>
         </div>
     );
 };

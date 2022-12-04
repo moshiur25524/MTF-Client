@@ -8,6 +8,7 @@ import CustomLink from '../../Shared/CustomLink/CustomLink';
 const Header = () => {
     const menuItem = <>
         <li><CustomLink to='/'>Home</CustomLink></li>
+        <li><CustomLink to='/appointment'>Appointment</CustomLink></li>
         <li><CustomLink to='/dashboard'>Dashboard</CustomLink></li>
         <li><CustomLink to='/blogs'>Blogs</CustomLink></li>
     </>

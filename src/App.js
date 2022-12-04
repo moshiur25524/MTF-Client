@@ -8,7 +8,8 @@ import Header from './Pages/Shared/Header/Header';
 import Login from './Pages/Login/Login';
 import Blogs from './Pages/Blogs/Blogs';
 import Register from './Pages/Login/Register/Register';
-import Footer from './Pages/Shared/Footer/Footer';
+import Appointment from './Pages/Appointment/Appointment';
+
 
 function App() {
   return (
@@ -16,13 +17,13 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/appointment' element={<Appointment/>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/blogs' element={<Blogs/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
-      <Footer/>
     </div>
   );
 }

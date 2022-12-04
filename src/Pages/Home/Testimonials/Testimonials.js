@@ -3,25 +3,29 @@ import quote from '../../../Features/Icons/quote.svg'
 import people1 from '../../../Features/images/people1.png'
 import people2 from '../../../Features/images/people2.png'
 import people3 from '../../../Features/images/people3.png'
+import Review from '../Review/Review';
 
 const Testimonials = () => {
     const reviews = [
         {
             _id: 1,
             name:'Md. Moshiur Rahman',
-            review:'',
+            reviewed:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using will',
+            location:'Bangladesh',
             img: people1
         },
         {
             _id: 2,
             name:'Nahid Shikder',
-            review:'',
+            reviewed:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using',
+            location:'India',
             img: people2
         },
         {
             _id: 3,
             name:'Sayma Rahman',
-            review:'',
+            reviewed:'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using will ',
+            location:'Borishal',
             img: people3
         },
     ]
@@ -36,8 +40,13 @@ const Testimonials = () => {
                     <img src={quote} className='w-24 lg:w-48' alt="" />
                 </div>
             </div>
-            <div>
-
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-10'>
+                {
+                    reviews.map(review => <Review
+                    key={review._id}
+                    review={review}
+                    ></Review>)
+                }
             </div>
         </section>
     );
