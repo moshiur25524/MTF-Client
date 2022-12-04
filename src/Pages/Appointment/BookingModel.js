@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const BookingModel = ({ treatment, date, setTreatment }) => {
     const {_id, name, slots } = treatment;
@@ -24,6 +25,7 @@ const BookingModel = ({ treatment, date, setTreatment }) => {
         .then(res => res.json())
         .then(data => console.log(data))
         setTreatment(null)
+        toast.success('Booking is successful')
     }
     return (
         <div>
@@ -31,7 +33,7 @@ const BookingModel = ({ treatment, date, setTreatment }) => {
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <label htmlFor="booking-model" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 className="font-bold text-lg text-secondary">Booking for: {name}</h3>
+                    <h3 className="font-bold text-xl text-secondary">{name}</h3>
 
                     <form className='grid grid-cols-1 gap-5 justify-items-center mt-5' onSubmit={handleBooking}>
                         <input type="text" name='date' value={format(date, "PP")} readOnly disabled className="input input-bordered w-full max-w-xs" />

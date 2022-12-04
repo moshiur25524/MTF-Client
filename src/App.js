@@ -9,6 +9,8 @@ import Login from './Pages/Login/Login';
 import Blogs from './Pages/Blogs/Blogs';
 import Register from './Pages/Login/Register/Register';
 import Appointment from './Pages/Appointment/Appointment';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
+      <ToastContainer />
     </div>
   );
 }
