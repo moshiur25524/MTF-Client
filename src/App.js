@@ -8,11 +8,11 @@ import Header from './Pages/Shared/Header/Header';
 import Login from './Pages/Login/Login';
 import Blogs from './Pages/Blogs/Blogs';
 import Register from './Pages/Login/Register/Register';
+import Footer from './Pages/Shared/Footer/Footer';
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="">
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -22,6 +22,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='*' element={<NotFound/>}/>
       </Routes>
+      <Footer/>
     </div>
   );
 }

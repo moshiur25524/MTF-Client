@@ -21,6 +21,8 @@ const Login = () => {
 
         console.log(user);
         signInWithEmailAndPassword(user.email, user.password)
+
+        e.target.reset()
     }
 
     if(error){
