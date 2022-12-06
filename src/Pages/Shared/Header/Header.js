@@ -36,17 +36,20 @@ const Header = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
-                       {menuItem}
+                        {menuItem}
                     </ul>
                 </div>
                 <div className="navbar-end">
                     {
                         user ? <li>
-                            <CustomLink onClick={handleSingOut} class="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
-                            >SignOut
-                            </CustomLink>
+                            <>
+                                <img src="" alt="" />
+                                <CustomLink onClick={handleSingOut} className="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
+                                >SignOut
+                                </CustomLink>
+                            </>
                         </li> : <li>
-                            <CustomLink class="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
+                            <CustomLink className="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
                             >Login
                             </CustomLink>
                         </li>

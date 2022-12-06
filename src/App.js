@@ -11,6 +11,7 @@ import Register from './Pages/Login/Register/Register';
 import Appointment from './Pages/Appointment/Appointment';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './Pages/Login/PrivateRoute';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/appointment' element={<Appointment/>}/>
+        <Route path='/appointment' element={<PrivateRoute><Appointment/></PrivateRoute>}/>
         <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/blogs' element={<Blogs/>}/>
         <Route path='/login' element={<Login/>}/>
