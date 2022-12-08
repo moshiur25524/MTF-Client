@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import React, { useState } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
 import LoadingButton from '../Shared/LoadingButton';
 import SocialLogin from './SocialLogin';
@@ -8,6 +9,11 @@ import SocialLogin from './SocialLogin';
 const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
+    const [email, setEmail] = useState('');
+
+    const [sendPasswordResetEmail, sending, ResetError] = useSendPasswordResetEmail(
+        auth
+      );
 
     let from = location.state?.from?.pathname || '/'
     const [
@@ -17,7 +23,7 @@ const Login = () => {
         error,
     ] = useSignInWithEmailAndPassword(auth);
 
-    if(loading){
+    if(loading || sending){
         return <LoadingButton/>
     }
 
@@ -29,7 +35,7 @@ const Login = () => {
             password: e.target.password.value
         }
 
-        console.log(user);
+        // console.log(user);
         signInWithEmailAndPassword(user.email, user.password)
 
         e.target.reset()
@@ -40,12 +46,20 @@ const Login = () => {
     }
 
     let errorMessage;
-    if (error) {
-        errorMessage = <p className='text-red-500'>{error.message}</p>
+    if (error || ResetError) {
+        errorMessage = <p className='text-red-500'>{error?.message}</p>
+    }
+
+    const handlePasswordReset = async () =>{
+        const success = await sendPasswordResetEmail(email)
+        if(success){
+            toast.success('Sending an Email to Reset Password')
+        }
     }
     return (
         <div>
             <div className="lg:flex">
+                <ToastContainer/>
                 <div className="lg:w-1/2 xl:max-w-screen-sm">
 
                     <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
@@ -55,7 +69,7 @@ const Login = () => {
                             <form onSubmit={handleLogin}>
                                 <div>
                                     <div className="text-sm font-bold text-gray-700 tracking-wide">Email Address <span className='text-red-700'>*</span></div>
-                                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email' type="email" placeholder="mike@gmail.com" required />
+                                    <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" name='email'  onChange={(e) => setEmail(e.target.value)} type="email" placeholder="mike@gmail.com" required />
                                 </div>
                                 <div className="mt-8">
                                     <div className="flex justify-between items-center">
@@ -63,10 +77,10 @@ const Login = () => {
                                             Password <span className='text-red-700'>*</span>
                                         </div>
                                         <div>
-                                            <a className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
+                                            <button onClick={handlePasswordReset} className="text-xs font-display font-semibold text-indigo-600 hover:text-indigo-800
                                         cursor-pointer">
                                                 Forgot Password?
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                     <input className="w-full text-lg py-2 border-b border-gray-300 focus:outline-none focus:border-indigo-500" type="password" placeholder="Enter your password" name='password' required />
