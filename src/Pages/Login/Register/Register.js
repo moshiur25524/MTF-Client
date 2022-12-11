@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import SocialLogin from '../SocialLogin';
 import { async } from '@firebase/util';
 import { toast, ToastContainer } from 'react-toastify';
 import LoadingButton from '../../Shared/LoadingButton';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
     const [
@@ -14,7 +15,10 @@ const Register = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
+    const navigate = useNavigate()
     const [updateProfile, updating] = useUpdateProfile(auth);
+    const [token] = useToken(user)
 
     const handleRegister = async e => {
         e.preventDefault()
@@ -27,12 +31,16 @@ const Register = () => {
 
         console.log(user);
         await createUserWithEmailAndPassword(user.email, user.password)
-        await updateProfile(user.name)
+        await updateProfile({ displayName: user.name })
 
     }
 
     if (user) {
         toast.success("Register a User Successfull")
+    }
+
+    if(token){
+        navigate('/appointment')
     }
 
     if (loading || updating) {
