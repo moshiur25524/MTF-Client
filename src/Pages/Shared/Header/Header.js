@@ -21,6 +21,7 @@ const Header = () => {
 
     const handleSingOut = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken')
     }
 
     return (

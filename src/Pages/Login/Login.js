@@ -3,6 +3,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../firebase.init';
+import useToken from '../../hooks/useToken';
 import LoadingButton from '../Shared/LoadingButton';
 import SocialLogin from './SocialLogin';
 
@@ -10,7 +11,7 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
     const [email, setEmail] = useState('');
-
+   
     const [sendPasswordResetEmail, sending, ResetError] = useSendPasswordResetEmail(
         auth
       );
@@ -22,6 +23,8 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    const [token] = useToken(user)
 
     if(loading || sending){
         return <LoadingButton/>
@@ -41,7 +44,7 @@ const Login = () => {
         e.target.reset()
     }
 
-    if(user){
+    if(token){
         navigate(from, {replace: true})
     }
 
