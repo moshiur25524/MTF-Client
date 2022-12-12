@@ -18,26 +18,27 @@ import Review from './Pages/Home/Review/Review';
 import Contact from './Pages/Contact/Contact';
 import MyHistory from './Pages/Dashboard/MyHistory';
 import Users from './Pages/Dashboard/Users';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 
 
 function App() {
   return (
     <div className="">
-      <Header/>
+      <Header />
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/appointment' element={<PrivateRoute><Appointment/></PrivateRoute>}/>
-        <Route path='/dashboard' element={<PrivateRoute><Dashboard/></PrivateRoute>}>
-          <Route index element={<MyAppointments/>}></Route>
-          <Route path='reviews' element={<MyReviews/>}></Route>
-          <Route path='myHistory' element={<MyHistory/>}></Route>
-          <Route path='users' element={<Users/>}></Route>
+        <Route path='/' element={<Home />} />
+        <Route path='/appointment' element={<PrivateRoute><Appointment /></PrivateRoute>} />
+        <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+          <Route index element={<MyAppointments />}></Route>
+          <Route path='reviews' element={<MyReviews />}></Route>
+          <Route path='myHistory' element={<MyHistory />}></Route>
+          <Route path='users' element={<RequireAdmin><Users /></RequireAdmin>}></Route>
         </Route>
-        <Route path='/blogs' element={<Blogs/>}/>
-        <Route path='/Contact' element={<Contact/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='*' element={<NotFound/>}/>
+        <Route path='/blogs' element={<Blogs />} />
+        <Route path='/Contact' element={<Contact />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <ToastContainer />
     </div>

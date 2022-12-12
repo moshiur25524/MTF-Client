@@ -12,7 +12,7 @@ const UserRow = ({ user, index, refetch }) => {
         })
             .then(res => {
                 if (res.status === 403) {
-                    toast.error('You are not an admin')
+                    toast.error('Failed to make an admin')
                 }
                 return res.json()
             })
