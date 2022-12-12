@@ -3,19 +3,26 @@ import { toast } from 'react-toastify';
 
 const UserRow = ({ user, index, refetch }) => {
     const { email, role } = user
-    const makeAdmin = () =>{
-        fetch(`http://localhost:8080/user/admin/${email}`,{
-            method:'PUT',
-            headers:{
+    const makeAdmin = () => {
+        fetch(`http://localhost:8080/user/admin/${email}`, {
+            method: 'PUT',
+            headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            refetch()
-            toast.success('Successfully make an admin')
-        })
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error('You are not an admin')
+                }
+                return res.json()
+            })
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    refetch()
+                    toast.success('Successfully make an admin')
+                }
+            })
     }
     return (
         <tr>
