@@ -4,7 +4,12 @@ import LoadingButton from '../Shared/LoadingButton';
 import UserRow from './UserRow';
 
 const Users = () => {
-    const { data: users, isLoading } = useQuery(['users'], () => fetch('http://localhost:8080/user').then(res => res.json()))
+    const { data: users, isLoading, refetch } = useQuery(['users'], () => fetch('http://localhost:8080/user', {
+        method: "GET",
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+    }).then(res => res.json()))
     if (isLoading) {
         return <LoadingButton />
     }
@@ -26,7 +31,8 @@ const Users = () => {
                             users.map((user, index) => <UserRow
                                 key={user._id}
                                 user={user}
-                                index = {index}
+                                refetch={refetch}
+                                index={index}
                             />)
                         }
                     </tbody>
