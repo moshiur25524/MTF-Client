@@ -53,18 +53,22 @@ const Header = () => {
                 </div>
                 <div className="navbar-end">
                     {
-                        user ? <li>
-                            <>
-                                <img src="" alt="" />
+                        user ? <>
+                           
+                                <img className="w-10 mask mask-hexagon" src={user.photoURL ||'https://www.tech101.in/wp-content/uploads/2018/07/blank-profile-picture.png'} alt="" />
+                           
+                            <li className='mr-8 btn btn-xs btn-success'> <span>{user.displayName}</span></li>
+                            <li>
                                 <CustomLink onClick={handleSingOut} className="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
                                 >SignOut
                                 </CustomLink>
-                            </>
-                        </li> : <li>
-                            <CustomLink className="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
-                            >Login
-                            </CustomLink>
-                        </li>
+                            </li>
+                        </>
+                            : <li>
+                                <CustomLink className="btn md:p-4 py-2 block hover:text-purple-400" to="/login"
+                                >Login
+                                </CustomLink>
+                            </li>
                     }
                 </div>
             </div>

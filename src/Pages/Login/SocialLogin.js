@@ -16,6 +16,11 @@ const SocialLogin = () => {
     if (token) {
         navigate(from, { replace: true })
     }
+
+    if (user) {
+        console.log(user);
+    }
+
     return (
         <div>
             <div className="flex flex-col w-full border-opacity-50">

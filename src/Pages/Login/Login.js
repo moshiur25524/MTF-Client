@@ -43,6 +43,10 @@ const Login = () => {
         e.target.reset()
     }
 
+    // if(user){
+    //     console.log(user);
+    // }
+
     if(token){
         navigate(from, {replace: true})
     }
