@@ -38,7 +38,6 @@ const Login = () => {
             password: e.target.password.value
         }
 
-        // console.log(user);
         signInWithEmailAndPassword(user.email, user.password)
 
         e.target.reset()

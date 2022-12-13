@@ -5,7 +5,7 @@ import auth from '../../firebase.init';
 import useAdmin from '../../hooks/useAdmin';
 
 const Dashboard = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const [admin] = useAdmin(user)
     return (
         <div className="drawer drawer-mobile">
@@ -22,7 +22,10 @@ const Dashboard = () => {
                     <li><Link to='/dashboard'>My Appointments</Link></li>
                     <li><Link to='/dashboard/reviews'>My Reviews</Link></li>
                     <li><Link to='/dashboard/myHistory'>My History</Link></li>
-                    {admin && <li><Link to='/dashboard/users'>All Users</Link></li>}
+                    {admin && <>
+                        <li><Link to='/dashboard/users'>All Users</Link></li>
+                        <li><Link to='/dashboard/addDoctor'>Add Doctor</Link></li>
+                    </>}
                 </ul>
 
             </div>
