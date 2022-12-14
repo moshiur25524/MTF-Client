@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { toast } from 'react-toastify';
 
@@ -24,6 +25,20 @@ const UserRow = ({ user, index, refetch }) => {
                 }
             })
     }
+
+    // const handleDeleteUser = email =>{
+    //     const proceed = window.confirm('Are You Sure to Delete')
+    //     if(proceed){
+    //         fetch(`http://localhost:8080/user/${email}`,{
+    //         method:'DELETE'
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     toast.error('Delete User Successfull')
+    //     }
+    // }
     return (
         <tr>
             <th>{index + 1}</th>
