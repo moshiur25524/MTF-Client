@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import SocialLogin from '../SocialLogin';
-import { async } from '@firebase/util';
 import { toast, ToastContainer } from 'react-toastify';
 import LoadingButton from '../../Shared/LoadingButton';
 import useToken from '../../../hooks/useToken';
@@ -20,26 +19,41 @@ const Register = () => {
     const [updateProfile, updating] = useUpdateProfile(auth);
     const [token] = useToken(user)
 
+    const imageStorageKey = 'f7353b36837541bf9e1697d5a71f34d2'
+
     const handleRegister = async e => {
         e.preventDefault()
         const user = {
             name: e.target.name.value,
             email: e.target.email.value,
-            file: e.target.file.value,
+            image: e.target.image.files[0],
             password: e.target.password.value
         }
 
-        console.log(user);
+        const formData = new FormData();
+        formData.append('image', user.image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.success) {
+                    const img = result.data.url;
+                    user.image = img
+                }
+            })
         await createUserWithEmailAndPassword(user.email, user.password)
-        await updateProfile({ displayName: user.name })
-
+        await updateProfile({ displayName: user.name, photoURL: user.image })
+        console.log(user);
     }
 
     if (user) {
         toast.success("Register a User Successfull")
     }
 
-    if(token){
+    if (token) {
         navigate('/appointment')
     }
 
@@ -72,7 +86,7 @@ const Register = () => {
                                 </div>
                                 <div>
                                     <div className="text-sm font-bold text-gray-700 tracking-wide">Image URL</div>
-                                    <input type="file" name='file' className="file-input file-input-bordered w-full max-w-xs" />
+                                    <input type="file" name='image' className="file-input file-input-bordered w-full max-w-xs" />
                                 </div>
                                 <div className="mt-8">
                                     <div className="flex justify-between items-center">
