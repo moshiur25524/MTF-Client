@@ -21,22 +21,25 @@ const UserRow = ({ user, index, refetch }) => {
                 console.log(data);
                 if (data.modifiedCount > 0) {
                     refetch()
-                    toast.success('Successfully make an admin')
+                    toast.success('Successfully made an admin')
                 }
             })
     }
 
-    // const handleDeleteUser = email =>{
-    //     const proceed = window.confirm('Are You Sure to Delete')
-    //     if(proceed){
-    //         fetch(`http://localhost:8080/user/${email}`,{
-    //         method:'DELETE'
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     toast.error('Delete User Successfull')
+    // const handleDeleteUser = () => {
+    //     const proceed = window.confirm(`Are You Sure to Delete the ${email}`)
+    //     if (proceed) {
+    //         fetch(`http://localhost:8080/user/${email}`, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
+    //             }
+    //         })
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 toast.error('Deleted User Successfull')
+    //             })
     //     }
     // }
     return (

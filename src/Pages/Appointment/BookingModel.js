@@ -5,51 +5,52 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const BookingModel = ({ treatment, date, setTreatment, refetch }) => {
-    const {_id, name, slots } = treatment;
-    const formatedDate = format(date , 'PP')
+    const { _id, name, slots, price } = treatment;
+    const formatedDate = format(date, 'PP')
     const [user, loading, error] = useAuthState(auth);
-    const handleBooking = e =>{
+    const handleBooking = e => {
         e.preventDefault()
         const slot = e.target.slot.value;
         const displayName = e.target.name.value;
         const email = e.target.email.value;
         const phone = e.target.phone.value;
-        
+
         const bookings = {
             treatmentId: _id,
             treatment: name,
             date: formatedDate,
             slot,
+            price,
             patient: email,
             patientName: displayName,
             phone
         }
         console.log(bookings);
 
-        fetch('http://localhost:8080/bookings',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch('http://localhost:8080/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
             body: JSON.stringify(bookings)
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if(data.success){
-                toast(`Appontment is set, ${formatedDate} at ${slot}`)
-            }
-            else{
-                toast.error(`Already have an appointment, ${data?.bookings?.date} at ${data?.bookings?.slot}`)
-            }
-            refetch()
-            setTreatment(null)
-        })
-       
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.success) {
+                    toast(`Appontment is set, ${formatedDate} at ${slot}`)
+                }
+                else {
+                    toast.error(`Already have an appointment, ${data?.bookings?.date} at ${data?.bookings?.slot}`)
+                }
+                refetch()
+                setTreatment(null)
+            })
+
     }
     return (
         <div>
-            <ToastContainer/>
+            <ToastContainer />
             <input type="checkbox" id="booking-model" className="modal-toggle" />
             <div className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
