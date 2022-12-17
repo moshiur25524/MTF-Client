@@ -55,7 +55,7 @@ const Header = () => {
                     {
                         user ? <>
                            
-                                <img className="w-10 mask mask-hexagon" src={user.photoURL ||'https://www.tech101.in/wp-content/uploads/2018/07/blank-profile-picture.png'} alt="" />
+                                <img className="w-10 mask mask-hexagon" src={user?.photoURL ||'https://www.tech101.in/wp-content/uploads/2018/07/blank-profile-picture.png'} alt="" />
                            
                             <li className='mr-8 btn btn-xs btn-success'> <span>{user.displayName}</span></li>
                             <li>
