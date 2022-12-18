@@ -7,9 +7,11 @@ const CheckoutForm = ({ appointment }) => {
     const stripe = useStripe()
     const elements = useElements();
     const [cardError, setCardError] = useState('')
+    const [success, setSuccess] = useState('')
+    const [tranjectionId, settranjectionId] = useState('')
     const [clientSecret, setClientSecret] = useState('')
 
-    const { price } = appointment;
+    const { price, patient, patientName } = appointment;
 
     useEffect(() => {
         fetch('http://localhost:8080/create-payment-intent', {
@@ -46,6 +48,32 @@ const CheckoutForm = ({ appointment }) => {
         })
 
         setCardError(error?.message || '')
+        setSuccess('')
+
+        // Confirm Card payment
+
+        const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
+           ` ${ clientSecret }`,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: patientName,
+                        email: patient
+                    },
+                },
+            },
+        );
+
+        if(intentError){
+            setCardError(intentError?.message)
+        }
+        else{
+            setCardError('')
+            console.log(paymentIntent);
+            settranjectionId(paymentIntent.id)
+            setSuccess('Congrats! Your Payment is Successful')
+        }
     }
     return (
         <>
@@ -58,6 +86,12 @@ const CheckoutForm = ({ appointment }) => {
             </form>
             {
                 cardError && <p className='text-red-700'>{cardError}</p>
+            }
+            {
+                success && <div className='text-green-700'>
+                    <p>{success}</p>
+                    <p>Your Tranjection Id: <span className='text-orange-700 font-bold'>{tranjectionId}</span></p>
+                    </div>
             }
         </>
     );
