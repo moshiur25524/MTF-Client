@@ -28,7 +28,7 @@ const Payment = () => {
                 <div className="card-body">
                     <h1 className='text-2xl'>Hello, <span className='text-primary'>{appointment.patientName}</span></h1>
                     <h2 className="card-title">Pay For <span className='text-green-700'>{appointment.treatment}</span></h2>
-                    <p>Your Appointment on <span className='text-orange-700'>{appointment.date}</span> at {appointment.slot}</p>
+                    <p>Your Appointment on <span className='text-orange-700'>{appointment.date}</span> at <span className='text-orange-700'>{appointment.slot}</span></p>
                     <p>Your Price: $ {appointment.price}</p>
                 </div>
             </div>
