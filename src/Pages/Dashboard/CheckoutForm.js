@@ -103,7 +103,7 @@ const CheckoutForm = ({ appointment }) => {
             <form onSubmit={handleSubmit}>
                 <CardElement />
 
-                <button className='btn btn-success btn-sm mt-4' type="submit" disabled={!stripe || !elements || !clientSecret}>
+                <button className='btn btn-success btn-sm mt-4' type="submit" disabled={!stripe || !elements || !clientSecret || success}>
                     Pay
                 </button>
             </form>
