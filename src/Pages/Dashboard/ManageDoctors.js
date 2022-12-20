@@ -19,7 +19,7 @@ const ManageDoctors = () => {
     }
     return (
         <div>
-            <h1 className='text-center text-primary text-2xl'>Manage all the doctors: {doctors.length}</h1>
+            <h1 className='text-center text-primary text-2xl'>Our doctors: {doctors.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
 
