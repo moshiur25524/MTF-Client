@@ -4,7 +4,7 @@ import LoadingButton from '../Shared/LoadingButton';
 import UserRow from './UserRow';
 
 const Users = () => {
-    const { data: users, isLoading, refetch } = useQuery(['users'], () => fetch('http://localhost:8080/user', {
+    const { data: users, isLoading, refetch } = useQuery(['users'], () => fetch('https://mtf-server.onrender.com/user', {
         method: "GET",
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

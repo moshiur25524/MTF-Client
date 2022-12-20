@@ -5,7 +5,7 @@ import LoadingButton from '../Shared/LoadingButton';
 
 const AddDoctor = () => {
 
-    const { data: tools, isLoading } = useQuery(['tools'], () => fetch(`http://localhost:8080/tools`).then(res => res.json()))
+    const { data: tools, isLoading } = useQuery(['tools'], () => fetch(`https://mtf-server.onrender.com/tools`).then(res => res.json()))
 
     const imageStorageKey = 'f7353b36837541bf9e1697d5a71f34d2'
 
@@ -36,7 +36,7 @@ const AddDoctor = () => {
                         img: img
                     }
                     // send to your database
-                    fetch('http://localhost:8080/doctor', {
+                    fetch('https://mtf-server.onrender.com/doctor', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

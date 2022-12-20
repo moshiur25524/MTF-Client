@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L1do3CIFsH6bjUWou5CQgP3OOcYM339cUwmY
 
 const Payment = () => {
     const { id } = useParams()
-    const url = `http://localhost:8080/booking/${id}`
+    const url = `https://mtf-server.onrender.com/booking/${id}`
 
     const { data: appointment, isLoading } = useQuery(['booking', id], () => fetch(url, {
         method: 'GET',

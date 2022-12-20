@@ -11,7 +11,7 @@ const AvailableAppointment = ({ date }) => {
     const [treatment, setTreatment] = useState(null)
     const formatedDate = format(date, 'PP')
 
-    const { data: services, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`http://localhost:8080/available?date=${formatedDate}`)
+    const { data: services, isLoading, refetch } = useQuery(['available', formatedDate], () => fetch(`https://mtf-server.onrender.com/available?date=${formatedDate}`)
         .then(res => res.json())
     )
 

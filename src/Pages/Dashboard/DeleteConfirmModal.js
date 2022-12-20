@@ -5,7 +5,7 @@ const DeleteConfirmModal = ({ deletingDoctor, refetch, setDeletingDoctor }) => {
     const { name, email } = deletingDoctor;
 
     const handleDeleteDoctor = () => {
-        const url = `http://localhost:8080/doctor/${email}`
+        const url = `https://mtf-server.onrender.com/doctor/${email}`
 
         fetch(url, {
             method: 'DELETE',

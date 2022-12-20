@@ -27,7 +27,7 @@ const BookingModel = ({ treatment, date, setTreatment, refetch }) => {
         }
         console.log(bookings);
 
-        fetch('http://localhost:8080/bookings', {
+        fetch('https://mtf-server.onrender.com/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

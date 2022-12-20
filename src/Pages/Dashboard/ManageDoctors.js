@@ -7,7 +7,7 @@ import DoctorRow from './DoctorRow';
 
 const ManageDoctors = () => {
     const [deletingDoctor, setDeletingDoctor] = useState(null)
-    const { data: doctors, isLoading , refetch } = useQuery(['doctors'], () => fetch('http://localhost:8080/doctor', {
+    const { data: doctors, isLoading , refetch } = useQuery(['doctors'], () => fetch('https://mtf-server.onrender.com/doctor', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`

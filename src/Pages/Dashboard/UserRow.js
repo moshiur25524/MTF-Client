@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const UserRow = ({ user, index, refetch }) => {
     const { email, role } = user
     const makeAdmin = () => {
-        fetch(`http://localhost:8080/user/admin/${email}`, {
+        fetch(`https://mtf-server.onrender.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -29,7 +29,7 @@ const UserRow = ({ user, index, refetch }) => {
     // const handleDeleteUser = () => {
     //     const proceed = window.confirm(`Are You Sure to Delete the ${email}`)
     //     if (proceed) {
-    //         fetch(`http://localhost:8080/user/${email}`, {
+    //         fetch(`https://mtf-server.onrender.com/user/${email}`, {
     //             method: 'DELETE',
     //             headers: {
     //                 authorization: `Bearer ${localStorage.getItem('accessToken')}`
