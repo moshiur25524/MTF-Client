@@ -1,14 +1,13 @@
 
 # MTF Factory
 
-It is a factory where all type of machinary products can be buy. Every products
-have 3 Years waranty.
+Bangladesh Machine Tools Factory is located in Dhaka Division. This business is working in the following industry: Wholesale of machinery.
 
 
 ## Demo
 
 Live Client Side of [Machine Tool Factory](https://machine-tools-factory.web.app/).
-Live Server Side of [Machine Tool Factory](https://machine-tools-factory.web.app/).
+Live Server Side of [Machine Tool Factory](https://mtf-server.onrender.com/).
 
 
 ## Screenshots

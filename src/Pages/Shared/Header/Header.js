@@ -7,7 +7,7 @@ import CustomLink from '../../Shared/CustomLink/CustomLink';
 
 const Header = () => {
 
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
     const menuItem = <>
         <li><CustomLink to='/'>Home</CustomLink></li>
@@ -15,7 +15,6 @@ const Header = () => {
         <li><CustomLink to='/blogs'>Blogs</CustomLink></li>
         <li><CustomLink to='/contact'>Contact</CustomLink></li>
         {user && <li><CustomLink to='/dashboard'>Dashboard</CustomLink></li>}
-
     </>
 
 
@@ -37,7 +36,7 @@ const Header = () => {
                         </ul>
                     </div>
                     <CustomLink to='/' className="btn btn-ghost normal-case text-xl">
-                        <img src={headerIcon} alt="" />
+                        <img src={headerIcon} alt="Header Icon" />
                     </CustomLink>
                 </div>
                 <div className="navbar-center hidden lg:flex">

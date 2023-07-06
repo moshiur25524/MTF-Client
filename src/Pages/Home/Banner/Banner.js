@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PrimaryButton from '../../Shared/PrimaryButton/PrimaryButton';
 // import bannerImage from '../../../Features/images/Sreemongol.png'
 
@@ -9,9 +10,9 @@ const Banner = () => {
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src="https://placeimg.com/260/400/arch" className="max-w-sm rounded-lg shadow-2xl" />
                     <div>
-                        <h1 className="text-5xl font-bold">Box Office News!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                        <PrimaryButton>Get Start</PrimaryButton>
+                        <h1 className="text-5xl font-bold">Enjoy All Our Tools!</h1>
+                        <p className="py-6">Bangladesh Machine Tools Factory is located in Dhaka Division. This business is working in the following industry: <br /> Wholesale of machinery.</p>
+                        <PrimaryButton><Link to='/appointment'>Call Doctor</Link></PrimaryButton>
                     </div>
                 </div>
             </div>
