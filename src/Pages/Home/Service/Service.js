@@ -1,4 +1,5 @@
 import React from "react";
+import { TbDental } from "react-icons/tb";
 
 const Service = ({ service }) => {
   const { img, title } = service;
@@ -12,7 +13,10 @@ const Service = ({ service }) => {
           <h2 className="card-title">{title}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div className="card-actions">
-            <button className="btn btn-primary">Treatment</button>
+            <button className="btn btn-primary">
+              <TbDental style={{ color: "white", fontSize: "2em" }} /> &nbsp;
+              Treatment
+            </button>
           </div>
         </div>
       </div>

@@ -23,8 +23,8 @@ const Services = () => {
     },
   ];
   return (
-    <div className="mt-5">
-      <h1 className="text-center text-2xl text-secondary uppercase font-bold">
+    <div>
+      <h1 className="text-center text-2xl text-primary mb-6 tracking-wide uppercase font-bold">
         Services
       </h1>
       <p className="text-center text-xl ">All Our Services for you</p>
