@@ -4,8 +4,18 @@ import people1 from "../../../Features/images/people1.png";
 import people2 from "../../../Features/images/people2.png";
 import people3 from "../../../Features/images/people3.png";
 import Review from "../Review/Review";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Testimonials = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   const reviews = [
     {
       _id: 1,
@@ -43,11 +53,12 @@ const Testimonials = () => {
           <img src={quote} className="w-24 lg:w-48" alt="" />
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+      <Slider {...settings}>
         {reviews.map((review) => (
           <Review key={review._id} review={review}></Review>
         ))}
-      </div>
+      </Slider>
     </section>
   );
 };
